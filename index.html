@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Application</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <header class="container">
+      <h1>Weather</h1>
+
+      <form id="searchFrom" class="search" autocomplete="off">
+        <label class="sr-only" for="locationInput">Location</label>
+        <input
+          id="locationInput"
+          type="text"
+          placeholder="Enter a location (e.g., Manila, PH or 40.7128,-74.0060)"
+          required
+        />
+        <button type="submit">Search</button>
+        <button type="button" id="geoBtn" title="Use your current location">
+          Use my location
+        </button>
+        <button type="button" id="refreshBtn" disabled>Refresh</button>
+      </form>
+
+      <p id="status" class="status" aria-live="polite"></p>
+    </header>
+
+    <main class="container">
+      <section id="currentCard" class="card hidden">
+        <div class="cardHeader">
+          <div>
+            <h2 id="placeName">-</h2>
+            <p class="muted" id="asOf">-</p>
+          </div>
+          <div class="bigIcon" id="icon">⛅</div>
+        </div>
+
+        <div class="grid">
+          <div class="metric">
+            <div class="label">Temperature</div>
+            <div class="value" id="temp">-</div>
+          </div>
+
+          <div class="metric">
+            <div class="label">Wind Speed</div>
+            <div class="value" id="wind">-</div>
+          </div>
+
+          <div class="metric">
+            <div class="label">Likelihood of rain</div>
+            <div class="value" id="rainChance">-</div>
+          </div>
+
+          <div class="metric">
+            <div class="label">Conditions</div>
+            <div class="value" id="conditions">-</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h3>Previous 24 hours</h3>
+        <div class="tableWrap">
+          <table class="table" id="prevTable">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Temperature</th>
+                <th>Wind</th>
+                <th>Rain</th>
+                <th>Conditions</th>
+              </tr>
+            </thead>
+            <tbody id="prevBody">
+              <tr>
+                <td colspan="5" class="muted">No Data Yet.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="card">
+        <h3>Next 24 hours</h3>
+        <div class="tableWrap">
+          <table class="table" id="nextTable">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Temperature</th>
+                <th>Wind</th>
+                <th>Rain %</th>
+                <th>Conditions %</th>
+              </tr>
+            </thead>
+            <tbody id="nextBody">
+              <tr>
+                <td colspan="5" class="muted">No Data Yet.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <div id="loading" class="loading hidden" aria-hidden="true">
+      <div class="spinner"></div>
+      <div>Loading weather...</div>
+    </div>
+  </body>
+</html>
